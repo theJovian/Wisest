@@ -1,14 +1,8 @@
-import {Text, View} from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {Experiences} from './ui/screens/Experience/Experiences';
 
 const App = () => {
-  return (
-    <View>
-      <Text>Suuup</Text>
-      <Icon name="star-outline" size={30} color="red" />
-    </View>
-  );
+  return <Experiences />;
 };
 
 export default App;
