@@ -1,0 +1,15 @@
+{
+  "experiences": [
+    {
+      "id": "1",
+      "name": "prueba",
+      "description": "description"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "testUser"
+    }
+  ]
+}

@@ -1,8 +1,14 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {Experiences} from './ui/screens/Experience/Experiences';
+import {NavigationContainer} from '@react-navigation/native';
+import {MyStack} from './src/ui/navigation/Navigator';
 
 const App = () => {
-  return <Experiences />;
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
 };
 
 export default App;
