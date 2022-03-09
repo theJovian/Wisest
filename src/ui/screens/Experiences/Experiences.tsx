@@ -9,9 +9,15 @@ import {SideItem} from '../../components/Molecules/SideItem';
 
 interface Props {
   experiences: Experience[];
+  onCreateNewExperience: () => void;
+  onDeleteExperience: () => void;
 }
 
-export const Experiences = ({experiences}: Props) => {
+export const Experiences = ({
+  experiences,
+  onCreateNewExperience,
+  onDeleteExperience,
+}: Props) => {
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
   return (
     <View style={styles.container}>
@@ -20,6 +26,7 @@ export const Experiences = ({experiences}: Props) => {
           ListHeaderComponent={() => (
             <Text style={styles.title}>My Experiences</Text>
           )}
+          ListFooterComponent={() => <Separator vertical="big" />}
           showsVerticalScrollIndicator={false}
           data={experiences}
           renderItem={({item}) => <ExperienceElement experience={item} />}
@@ -29,9 +36,17 @@ export const Experiences = ({experiences}: Props) => {
         {isSideMenuVisible && (
           <>
             <SideMenu>
-              <SideItem icon="trash-outline" label="Delete" />
-              <SideItem icon="create-outline" label="Edit" />
-              <SideItem icon="add-outline" label="New" />
+              <SideItem
+                icon="trash-outline"
+                label="Delete"
+                onPress={onDeleteExperience}
+              />
+              <SideItem icon="create-outline" label="Edit" onPress={() => {}} />
+              <SideItem
+                icon="add-outline"
+                label="New"
+                onPress={onCreateNewExperience}
+              />
             </SideMenu>
             <Separator vertical="medium" />
           </>

@@ -6,11 +6,15 @@ import {Separator} from '../Atoms/Separator';
 interface Props {
   icon: string;
   label: string;
+  onPress: () => void;
 }
 
-export const SideItem = ({icon, label}: Props) => {
+export const SideItem = ({icon, label, onPress}: Props) => {
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={1}
+      style={styles.container}
+      onPress={onPress}>
       <Icon name={icon} size={30} color="black" />
       <Separator horizontal="small" vertical="small" />
       <Text style={styles.option}>{label}</Text>

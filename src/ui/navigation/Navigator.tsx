@@ -1,7 +1,8 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {LoginController} from '../screens/Login/Login.controller';
-import {ExperiencesController} from '../screens/Experience/Experiences.controller';
+import {ExperiencesController} from '../screens/Experiences/Experiences.controller';
+import {CreateExperienceController} from '../screens/Experiences/CreateExperience/CreateExperience.controller';
 
 const Stack = createStackNavigator();
 
@@ -12,6 +13,10 @@ export const MyStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="LoginController" component={LoginController} />
+      <Stack.Screen
+        name="CreateExperiencesController"
+        component={CreateExperienceController}
+      />
       <Stack.Screen
         name="ExperiencesController"
         component={ExperiencesController}
