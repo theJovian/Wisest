@@ -5,11 +5,19 @@ import {Experience} from '../../../core/domain/Experience/Experience';
 
 interface Props {
   experience: Experience;
+  width?: number;
+  disabled?: boolean;
 }
 
-export const ExperienceElement = ({experience}: Props) => {
+export const ExperienceElement = ({
+  experience,
+  width = 400,
+  disabled = false,
+}: Props) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={{...styles.container, width: width}}
+      disabled={disabled}>
       <Text style={{...styles.subtitle, ...globalStyle.font}}>
         {experience.name}
       </Text>
@@ -37,7 +45,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginVertical: 10,
     height: 140,
-    width: 400,
     paddingTop: 5,
     paddingHorizontal: 15,
   },

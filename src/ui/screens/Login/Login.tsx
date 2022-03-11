@@ -4,21 +4,12 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {UserService} from '../../../core/application/UserService';
 
-export const Login = () => {
-  const navigator = useNavigation<StackNavigationProp<any>>();
-  const [hasFailedLogin, setHasFailedLogin] = useState(false);
-  const handleLogin = async () => {
-    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&');
-    const user = await UserService.getUser();
-    if (user) {
-      console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
-      console.log(JSON.stringify(user, null, 5));
-      navigator.navigate('ExperiencesController');
-    } else {
-      setHasFailedLogin(true);
-    }
-  };
+interface Props {
+  handleLogin: () => void;
+  hasFailedLogin: boolean;
+}
 
+export const Login = ({handleLogin, hasFailedLogin}: Props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleLogin}>

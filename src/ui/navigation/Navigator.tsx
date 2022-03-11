@@ -3,8 +3,19 @@ import React from 'react';
 import {LoginController} from '../screens/Login/Login.controller';
 import {ExperiencesController} from '../screens/Experiences/Experiences.controller';
 import {CreateExperienceController} from '../screens/Experiences/CreateExperience/CreateExperience.controller';
+import {DeleteExperiencesController} from '../screens/Experiences/DeleteExperiences/DeleteExperiences.controller';
+import {Experience} from '../../core/domain/Experience/Experience';
 
-const Stack = createStackNavigator();
+export type RootStackParamList = {
+  Login: undefined;
+  CreateExperience: undefined;
+  DeleteExperiences: {
+    experiences: Experience[];
+  };
+  Experiences: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const MyStack = () => {
   return (
@@ -12,15 +23,16 @@ export const MyStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="LoginController" component={LoginController} />
+      <Stack.Screen name="Login" component={LoginController} />
       <Stack.Screen
-        name="CreateExperiencesController"
+        name="CreateExperience"
         component={CreateExperienceController}
       />
       <Stack.Screen
-        name="ExperiencesController"
-        component={ExperiencesController}
+        name="DeleteExperiences"
+        component={DeleteExperiencesController}
       />
+      <Stack.Screen name="Experiences" component={ExperiencesController} />
     </Stack.Navigator>
   );
 };
