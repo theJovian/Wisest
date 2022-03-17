@@ -4,4 +4,7 @@ export const ExperienceService = {
   getExperiences: () => {
     return ExperienceRepository.getExperiences();
   },
+  deleteExperiences: (experiences: any) => {
+    return ExperienceRepository.deleteExperiences(experiences);
+  },
 };

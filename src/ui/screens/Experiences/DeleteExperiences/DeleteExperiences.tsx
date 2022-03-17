@@ -12,10 +12,12 @@ import {Experience} from '../../../../core/domain/Experience/Experience';
 import {Separator} from '../../../components/Atoms/Separator';
 import CheckBox from '@react-native-community/checkbox';
 import {Formik} from 'formik';
+import {FormikValues, trashItem} from './DeleteExperiences.controller';
 
 interface Props {
   experiences: Experience[];
-  onDeleteExperience: () => void;
+  onDeleteExperience: (onSubmit: () => void) => void;
+  onConfirmDeleteExperience: (values: FormikValues) => void;
 }
 
 const screenWidth = Dimensions.get('window').width;
@@ -23,11 +25,6 @@ const screenWidth = Dimensions.get('window').width;
 type action = {
   type: 'check';
   id: number;
-};
-
-type trashItem = {
-  id: number;
-  value: boolean;
 };
 
 type state = {
@@ -38,17 +35,21 @@ const reducer = (state: state, action: action) => {
   switch (action.type) {
     case 'check':
       return {
-        trash: state.trash.map(trashItem => {
-          if (trashItem.id === action.id) {
-            trashItem.value = !trashItem.value;
+        trash: state.trash.map(item => {
+          if (item.id === action.id) {
+            item.value = !item.value;
           }
-          return trashItem;
+          return item;
         }),
       };
   }
 };
 
-export const DeleteExperiences = ({experiences, onDeleteExperience}: Props) => {
+export const DeleteExperiences = ({
+  experiences,
+  onDeleteExperience,
+  onConfirmDeleteExperience,
+}: Props) => {
   const [state, dispatch] = useReducer(reducer, {
     trash: experiences.map(experience => ({
       id: experience.id,
@@ -61,15 +62,16 @@ export const DeleteExperiences = ({experiences, onDeleteExperience}: Props) => {
         initialValues={{
           state,
         }}
-        onSubmit={values => console.log(values)}>
-        {({values}) => (
+        onSubmit={onConfirmDeleteExperience}>
+        {({values, handleSubmit}) => (
           <FlatList
             contentContainerStyle={styles.list}
             ListHeaderComponent={() => (
               <View style={styles.header}>
                 <Text style={styles.title}>Delete My Experiences</Text>
-                <TouchableOpacity onPress={onDeleteExperience}>
-                  <Text>Confirm</Text>
+                <TouchableOpacity
+                  onPress={() => onDeleteExperience(handleSubmit)}>
+                  <Text style={styles.deleteButton}>Confirm</Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -129,5 +131,8 @@ const styles = StyleSheet.create({
   element: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  deleteButton: {
+    color: 'red',
   },
 });

@@ -1,45 +1,58 @@
 import {DeleteExperiences} from './DeleteExperiences';
-import prompt from 'react-native-prompt-android';
 import {RootStackParamList} from '../../../navigation/Navigator';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
+import {Alert} from 'react-native';
+import {ExperienceService} from '../../../../core/application/ExperienceService';
 
 type DeleteExperiencesRouteType = RouteProp<
   RootStackParamList,
   'DeleteExperiences'
 >;
 
+export type trashItem = {
+  id: number;
+  value: boolean;
+};
+
+export interface FormikValues {
+  state: {
+    trash: trashItem[];
+  };
+}
+
 export const DeleteExperiencesController = () => {
   const {params} = useRoute<DeleteExperiencesRouteType>();
   const {experiences} = params;
-  const showPrompt = () => {
-    // Alert.prompt(
-    //   'Esta seguro?',
-    //   'Esta accion no se puede revertir',
-    //   (valor: string) => console.log('info: ', valor),
-    //   'plain-text',
-    //   'Hola Mundo',
-    //   'number-pad',
-    // );
-    prompt(
-      'Enter password',
-      'Enter your password to claim your $1.5B in lottery winnings',
+  const confirmDelete = (values: FormikValues) => {
+    console.log(JSON.stringify(values, null, 5));
+    const items = values.state.trash
+      .filter(item => item.value)
+      .map(trashItem => trashItem.id);
+    console.log(JSON.stringify(items, null, 5));
+    const trash = {trash: items};
+    ExperienceService.deleteExperiences(trash).then(response =>
+      console.log(response),
+    );
+  };
+  const showPrompt = (onSubmit: () => void) => {
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete the selected items?',
       [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
+          onPress: () => {},
           style: 'cancel',
         },
         {
-          text: 'OK',
-          onPress: password => console.log('OK Pressed, password: ' + password),
+          text: 'Confirm',
+          onPress: onSubmit,
+          style: 'default',
         },
       ],
       {
-        type: 'secure-text',
-        cancelable: false,
-        defaultValue: 'test',
-        placeholder: 'placeholder',
+        cancelable: true,
       },
     );
   };
@@ -47,6 +60,7 @@ export const DeleteExperiencesController = () => {
     <DeleteExperiences
       experiences={experiences}
       onDeleteExperience={showPrompt}
+      onConfirmDeleteExperience={confirmDelete}
     />
   );
 };

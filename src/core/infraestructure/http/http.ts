@@ -31,12 +31,13 @@ const put = async <T>(url: string, body: any) => {
   return (await response.json()) as T;
 };
 
-const _delete = async <T>(url: string) => {
+const _delete = async (url: string, body?: any) => {
   const response = await fetch(base + url, {
     method: 'DELETE',
     headers,
+    body: JSON.stringify(body),
   });
-  return (await response.json()) as T;
+  return response.text();
 };
 
 export const http = {

@@ -13,4 +13,7 @@ export const ExperienceRepository = {
       }),
     );
   },
+  deleteExperiences: async (experiences: any) => {
+    return await http.delete('experiences', experiences);
+  },
 };
