@@ -39,13 +39,25 @@ export const Experiences = ({
               <SideItem
                 icon="trash-outline"
                 label="Delete"
-                onPress={onDeleteExperience}
+                onPress={() => {
+                  setIsSideMenuVisible(false);
+                  onDeleteExperience();
+                }}
               />
-              <SideItem icon="create-outline" label="Edit" onPress={() => {}} />
+              <SideItem
+                icon="create-outline"
+                label="Edit"
+                onPress={() => {
+                  setIsSideMenuVisible(false);
+                }}
+              />
               <SideItem
                 icon="add-outline"
                 label="New"
-                onPress={onCreateNewExperience}
+                onPress={() => {
+                  setIsSideMenuVisible(false);
+                  onCreateNewExperience();
+                }}
               />
             </SideMenu>
             <Separator vertical="medium" />
