@@ -7,13 +7,24 @@ import {Separator} from '../../../components/Atoms/Separator';
 
 const height = Dimensions.get('window').height;
 
-export const CreateExperience = () => {
+interface props {
+  onCreate: any;
+}
+
+export const CreateExperience = ({onCreate}: props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>New Experience</Text>
       <Formik
         initialValues={{name: '', description: ''}}
-        onSubmit={values => console.log(values)}>
+        onSubmit={values => {
+          const experience = {
+            name: values.name,
+            description: values.description,
+            user_id: 1,
+          };
+          onCreate(experience);
+        }}>
         {({handleChange, handleBlur, handleSubmit, values}) => (
           <View style={styles.container}>
             <TextForm

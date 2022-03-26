@@ -3,7 +3,7 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const base = 'http://ec2-13-38-81-126.eu-west-3.compute.amazonaws.com/api/';
+const base = 'https://www.wisest.rocks/api/';
 
 const get = async <T>(url: string) => {
   const response = await fetch(base + url, {
@@ -13,13 +13,13 @@ const get = async <T>(url: string) => {
   return (await response.json()) as T;
 };
 
-const post = async <T>(url: string, body: any) => {
+const post = async (url: string, body: any) => {
   const response = await fetch(base + url, {
     method: 'POST',
     headers,
-    body,
+    body: JSON.stringify(body),
   });
-  return (await response.json()) as T;
+  return response.text();
 };
 
 const put = async <T>(url: string, body: any) => {
