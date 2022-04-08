@@ -15,7 +15,7 @@ export const LoginController = () => {
     const user = await UserService.getUser();
     if (user) {
       console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
-      console.log(JSON.stringify(user, null, 5));
+      // console.log(JSON.stringify(user, null, 5));
       navigator.navigate('Experiences');
     } else {
       setHasFailedLogin(true);

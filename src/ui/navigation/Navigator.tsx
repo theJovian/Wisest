@@ -5,6 +5,7 @@ import {ExperiencesController} from '../screens/Experiences/Experiences.controll
 import {CreateExperienceController} from '../screens/Experiences/CreateExperience/CreateExperience.controller';
 import {DeleteExperiencesController} from '../screens/Experiences/DeleteExperiences/DeleteExperiences.controller';
 import {Experience} from '../../core/domain/Experience/Experience';
+import {ExperienceController} from '../screens/Experiences/Experience/Experience.controller';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -13,6 +14,9 @@ export type RootStackParamList = {
     experiences: Experience[];
   };
   Experiences: undefined;
+  Experience: {
+    experience: Experience;
+  };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -33,6 +37,7 @@ export const MyStack = () => {
         component={DeleteExperiencesController}
       />
       <Stack.Screen name="Experiences" component={ExperiencesController} />
+      <Stack.Screen name="Experience" component={ExperienceController} />
     </Stack.Navigator>
   );
 };

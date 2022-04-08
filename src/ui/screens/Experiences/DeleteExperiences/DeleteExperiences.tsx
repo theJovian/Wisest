@@ -1,4 +1,4 @@
-import {ExperienceElement} from '../ExperienceElement';
+import {ExperienceItem} from '../ExperienceItem';
 import {
   Dimensions,
   FlatList,
@@ -80,7 +80,7 @@ export const DeleteExperiences = ({
             data={experiences}
             renderItem={({item, index}) => (
               <View style={styles.element}>
-                <ExperienceElement experience={item} width={350} disabled />
+                <ExperienceItem experience={item} width={350} disabled />
                 <Separator />
                 <CheckBox
                   value={values.state.trash[index].value}

@@ -3,7 +3,6 @@ import {CreateExperience} from './CreateExperience';
 import {useMutation, useQueryClient} from 'react-query';
 import {ExperienceService} from '../../../../core/application/ExperienceService';
 import {useNavigation} from '@react-navigation/native';
-import {ExperienceFormData} from '../../../../core/domain/Experience/Experience';
 
 export const CreateExperienceController = () => {
   const navigator = useNavigation();

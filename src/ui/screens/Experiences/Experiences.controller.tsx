@@ -5,8 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/Navigator';
 import {useQuery} from 'react-query';
+import {Experience} from '../../../core/domain/Experience/Experience';
 
-type ExperiencesScreenProp = StackNavigationProp<
+export type ExperiencesScreenProp = StackNavigationProp<
   RootStackParamList,
   'Experiences'
 >;
@@ -25,6 +26,11 @@ export const ExperiencesController = () => {
       onDeleteExperience={() =>
         navigator.navigate('DeleteExperiences', {
           experiences: experiences ?? [],
+        })
+      }
+      onSelectExperience={(experience: Experience) =>
+        navigator.navigate('Experience', {
+          experience,
         })
       }
     />

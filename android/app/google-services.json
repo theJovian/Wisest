@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "951248748689",
+    "project_id": "wisest-1653e",
+    "storage_bucket": "wisest-1653e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951248748689:android:87ede09ad75db34165ff30",
+        "android_client_info": {
+          "package_name": "com.wisest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951248748689-st8kpai7ruvc7c9gbu8d3iqablnqck4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm8J3DY-buErfPu4VctyOkXi0aXSNyrA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951248748689-st8kpai7ruvc7c9gbu8d3iqablnqck4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

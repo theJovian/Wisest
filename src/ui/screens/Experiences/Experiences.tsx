@@ -1,4 +1,4 @@
-import {ExperienceElement} from './ExperienceElement';
+import {ExperienceItem} from './ExperienceItem';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Experience} from '../../../core/domain/Experience/Experience';
@@ -11,12 +11,14 @@ interface Props {
   experiences: Experience[];
   onCreateNewExperience: () => void;
   onDeleteExperience: () => void;
+  onSelectExperience: (experience: Experience) => void;
 }
 
 export const Experiences = ({
   experiences,
   onCreateNewExperience,
   onDeleteExperience,
+  onSelectExperience,
 }: Props) => {
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
   return (
@@ -29,7 +31,14 @@ export const Experiences = ({
           ListFooterComponent={() => <Separator vertical="big" />}
           showsVerticalScrollIndicator={false}
           data={experiences}
-          renderItem={({item}) => <ExperienceElement experience={item} />}
+          renderItem={({item}) => (
+            <ExperienceItem
+              experience={item}
+              onPress={() => {
+                onSelectExperience(item);
+              }}
+            />
+          )}
         />
       </View>
       <View style={styles.floatingMenu}>
