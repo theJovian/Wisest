@@ -6,6 +6,8 @@ import {CreateExperienceController} from '../screens/Experiences/CreateExperienc
 import {DeleteExperiencesController} from '../screens/Experiences/DeleteExperiences/DeleteExperiences.controller';
 import {Experience} from '../../core/domain/Experience/Experience';
 import {ExperienceController} from '../screens/Experiences/Experience/Experience.controller';
+import {Iteration} from '../../core/domain/Iteration/Iteration';
+import {IterationController} from '../screens/Iteration/Iteration.controller';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -16,6 +18,10 @@ export type RootStackParamList = {
   Experiences: undefined;
   Experience: {
     experience: Experience;
+  };
+  Iteration: {
+    iteration: Iteration;
+    experience: string;
   };
 };
 
@@ -38,6 +44,21 @@ export const MyStack = () => {
       />
       <Stack.Screen name="Experiences" component={ExperiencesController} />
       <Stack.Screen name="Experience" component={ExperienceController} />
+      <Stack.Screen
+        name="Iteration"
+        component={IterationController}
+        options={{
+          headerShown: true,
+          title: 'My home',
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };
