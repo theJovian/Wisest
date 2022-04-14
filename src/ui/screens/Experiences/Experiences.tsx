@@ -74,6 +74,7 @@ export const Experiences = ({
         )}
         <FloatingButton
           onPress={() => setIsSideMenuVisible(!isSideMenuVisible)}
+          icon="grid-outline"
         />
       </View>
     </View>
@@ -105,7 +106,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   floatingMenu: {
-    // backgroundColor: 'blue',
     position: 'absolute',
     bottom: 50,
     right: 20,

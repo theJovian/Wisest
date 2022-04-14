@@ -5,13 +5,14 @@ import {brandColor} from '../../Styles/globalStyle';
 
 interface Props {
   onPress: () => void;
+  icon: string;
 }
 
-export const FloatingButton = ({onPress}: Props) => {
+export const FloatingButton = ({onPress, icon}: Props) => {
   return (
     <TouchableOpacity style={styles.floatingMenu} onPress={onPress}>
       <View>
-        <Icon name="grid-outline" size={35} color="black" />
+        <Icon name={icon} size={35} color="black" />
       </View>
     </TouchableOpacity>
   );
@@ -19,6 +20,7 @@ export const FloatingButton = ({onPress}: Props) => {
 
 const styles = StyleSheet.create({
   floatingMenu: {
+    borderWidth: 2,
     borderRadius: 50,
     height: 60,
     width: 60,

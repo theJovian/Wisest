@@ -28,11 +28,27 @@ export const ExperienceController = () => {
       experience: experience.name,
     });
   };
+
+  const createIteration = (n: number, experienceName: string) => {
+    navigator.navigate('CreateIteration', {
+      n,
+      experience: experienceName,
+    });
+  };
+
+  const deleteIteration = (iterationsToDelete: Iteration[]) => {
+    navigator.navigate('DeleteIteration', {
+      iterations: iterationsToDelete,
+    });
+  };
+
   return (
     <Experience
       experience={experience}
       iterations={iterations ?? []}
       onPress={onPress}
+      createIteration={createIteration}
+      deleteIterations={deleteIteration}
     />
   );
 };
