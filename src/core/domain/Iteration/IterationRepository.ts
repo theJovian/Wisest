@@ -1,21 +1,24 @@
-import { Iteration, State } from "./Iteration";
-import {
-  ItemDTO,
-  IterationDTO,
-} from '../../infraestructure/http/dto/IterationDTO';
+import {Iteration} from './Iteration';
+import {IterationDTO} from '../../infraestructure/http/dto/IterationDTO';
 import {http} from '../../infraestructure/http/http';
 
 export const IterationRepository = {
-  getIterations: async () => {
-    const iterations = await http.get<IterationDTO[]>('iterations');
+  getIterations: async (experienceId: number) => {
+    const iterations = await http.get<IterationDTO[]>(
+      `iterations/${experienceId}`,
+    );
+    console.log(JSON.stringify(iterations, null, 5));
     return iterations.map(
       (iterationDTO): Iteration => ({
         id: iterationDTO.id,
         n: iterationDTO.n,
         notes: iterationDTO.notes,
         score: iterationDTO.score,
-        items: iterationDTO.items.map(itemDTO => ({text: itemDTO.text;
-          state: itemDTO.state}))
+        experienceId: iterationDTO.experienceId,
+        items: iterationDTO.items.map(itemDTO => ({
+          text: itemDTO.text,
+          state: itemDTO.state,
+        })),
       }),
     );
   },

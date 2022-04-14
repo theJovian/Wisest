@@ -3,6 +3,7 @@ export interface Iteration {
   n: number;
   notes: string;
   score: number;
+  experienceId: number;
   items: Item[];
 }
 

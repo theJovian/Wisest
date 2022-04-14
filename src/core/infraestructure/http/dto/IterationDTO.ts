@@ -3,6 +3,7 @@ export interface IterationDTO {
   n: number;
   notes: string;
   score: number;
+  experienceId: number;
   items: ItemDTO[];
 }
 
