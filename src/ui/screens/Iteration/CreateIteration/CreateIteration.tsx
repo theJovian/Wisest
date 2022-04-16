@@ -1,22 +1,45 @@
 import {FieldArray, Formik} from 'formik';
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {TextForm} from '../../../components/Objects/TextForm';
-import {SmallButton} from '../../../components/Objects/SmallButton';
 import {Separator} from '../../../components/Atoms/Separator';
 import {StandardButton} from '../../../components/Objects/StandardButton';
+import {TestButtons} from './components/TestButtons';
+import {AddDeleteButtons} from './components/AddDeleteButtons';
+import {TextAreaItem} from '../../../components/Molecules/TextAreaItem';
+import {TextInputItem} from '../../../components/Molecules/TextInputItem';
+import {SmallButton} from '../../../components/Objects/SmallButton';
+import {scoreColors} from '../../../Styles/globalStyle';
+import {ScorePicker} from './components/ScorePicker';
 
 interface Props {
   n: number;
 }
 
+type formikState = 'positive' | 'negative' | 'neutral';
+
 export const CreateIteration = ({n}: Props) => {
+  const [isBeingTested, setIsBeingTested] = useState(false);
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Iteration {n}:</Text>
+      {isBeingTested && (
+        <>
+          <Separator vertical="small" />
+          <Text style={styles.subtitle}>Steps</Text>
+        </>
+      )}
       <Formik
-        initialValues={{items: ['']}}
-        onSubmit={() => console.log('submit madafaka!!!')}>
+        initialValues={{
+          items: [
+            {
+              text: '',
+              state: 'neutral',
+            },
+          ],
+          notes: '',
+          score: 0,
+        }}
+        onSubmit={() => console.log('sup nigga')}>
         {({values, handleSubmit, handleChange, handleBlur}) => (
           <View>
             <FieldArray
@@ -24,34 +47,66 @@ export const CreateIteration = ({n}: Props) => {
               render={arrayHelpers => (
                 <>
                   {values.items.map((item, index) => (
-                    <View style={styles.form}>
-                      <TextForm
-                        key={index}
-                        onChangeText={handleChange('state')}
-                        onBlur={handleBlur('state')}
-                        value={values.items[index]}
-                        title={`Step ${index + 1}`}
-                        type="textInput"
-                      />
-                    </View>
+                    <>
+                      {isBeingTested ? (
+                        <View style={styles.items}>
+                          <Text>- {item.text}</Text>
+                          <TestButtons
+                            onPositivePress={() => (item.state = 'positive')}
+                            onNegativePress={() => (item.state = 'negative')}
+                          />
+                        </View>
+                      ) : (
+                        <View style={styles.form}>
+                          <TextInputItem
+                            onChangeText={handleChange(`items[${index}].text`)}
+                            onBlur={handleBlur(`items[${index}].text`)}
+                            value={values.items[index].text}
+                            placeholder={`Step ${index + 1}`}
+                          />
+                        </View>
+                      )}
+                    </>
                   ))}
-                  <View style={styles.buttons}>
-                    <SmallButton
-                      onPress={() => arrayHelpers.push('')}
-                      icon="add-outline"
+                  {!isBeingTested && (
+                    <AddDeleteButtons
+                      onAdd={() =>
+                        arrayHelpers.push({text: '', state: 'neutral'})
+                      }
+                      onDelete={() => arrayHelpers.pop()}
                     />
-                    <Separator horizontal="medium" />
-                    <SmallButton
-                      onPress={() => arrayHelpers.pop()}
-                      icon="remove-outline"
-                    />
-                  </View>
+                  )}
                 </>
               )}
             />
-            <View style={styles.testButton}>
-              <StandardButton title="Test It!" onPress={handleSubmit} />
-            </View>
+            {isBeingTested ? (
+              <View>
+                <Separator />
+                <Text style={styles.subtitle}>Notes</Text>
+                <TextAreaItem
+                  onChangeText={handleChange('notes')}
+                  onBlur={handleBlur('notes')}
+                  value={values.notes}
+                  placeholder="notes"
+                />
+                <Separator />
+                <Text style={styles.subtitle}>Score</Text>
+                <ScorePicker onPress={note => (values.score = note)} />
+                <View style={styles.testButton}>
+                  <StandardButton
+                    title="Save"
+                    onPress={() => console.log(JSON.stringify(values, null, 5))}
+                  />
+                </View>
+              </View>
+            ) : (
+              <View style={styles.testButton}>
+                <StandardButton
+                  title="Test It!"
+                  onPress={() => setIsBeingTested(true)}
+                />
+              </View>
+            )}
           </View>
         )}
       </Formik>
@@ -73,11 +128,17 @@ const styles = StyleSheet.create({
   form: {
     marginVertical: 10,
   },
-  buttons: {
-    flexDirection: 'row',
-  },
   testButton: {
     alignItems: 'center',
     marginVertical: 10,
+  },
+  items: {
+    margin: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: '600',
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Iteration as IterationModel} from '../../../core/domain/Iteration/Iteration';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Separator} from '../../components/Atoms/Separator';
 import {Item} from './Item';
 import {Score} from './Score';
@@ -11,7 +11,7 @@ interface Props {
 
 export const Iteration = ({iteration}: Props) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Iteration {iteration.n}:</Text>
       <Separator vertical="small" />
       <Text style={styles.subtitle}>Steps</Text>
@@ -28,7 +28,7 @@ export const Iteration = ({iteration}: Props) => {
       <View style={styles.score}>
         <Score score={iteration.score} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

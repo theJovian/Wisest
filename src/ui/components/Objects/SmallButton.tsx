@@ -1,23 +1,41 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {brandColor} from '../../Styles/globalStyle';
+import {Separator} from '../Atoms/Separator';
 
 interface Props {
   onPress: () => void;
-  icon: string;
+  icon?: string;
+  backgroundColor?: string;
+  color?: string;
+  borderColor?: string;
+  text?: string;
 }
 
-export const SmallButton = ({onPress, icon}: Props) => {
+export const SmallButton = ({
+  onPress,
+  icon,
+  color,
+  backgroundColor,
+  borderColor,
+  text,
+}: Props) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Icon name={icon} size={20} />
+    <TouchableOpacity
+      style={{...styles.button, backgroundColor, borderColor}}
+      onPress={onPress}>
+      <View style={styles.content}>
+        {icon && <Icon name={icon} size={20} color={color} />}
+        {text && <Text style={{color}}>{text}</Text>}
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
+    borderColor: brandColor,
     borderWidth: 1,
     borderRadius: 50,
     backgroundColor: brandColor,
@@ -25,5 +43,9 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  content: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
