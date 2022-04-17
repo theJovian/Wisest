@@ -1,5 +1,5 @@
 import {ExperienceRepository} from '../domain/Experience/ExperienceRepository';
-import {Experience, ExperienceFormData} from '../domain/Experience/Experience';
+import {ExperienceFormData} from '../domain/Experience/Experience';
 
 export const ExperienceService = {
   getExperiences: () => {

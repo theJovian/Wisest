@@ -33,6 +33,7 @@ export const ExperienceController = () => {
     navigator.navigate('CreateIteration', {
       n,
       experience: experienceName,
+      experienceId: experience.id,
     });
   };
 

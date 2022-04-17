@@ -32,7 +32,9 @@ export const ScorePicker = ({onPress}: Props) => {
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((note, index) => (
         <SmallButton
           text={note.toString()}
+          // @ts-ignore
           borderColor={scoreColors[note]}
+          // @ts-ignore
           backgroundColor={isSelected[index] ? scoreColors[note] : undefined}
           onPress={() => {
             setIsSelected(select(index));

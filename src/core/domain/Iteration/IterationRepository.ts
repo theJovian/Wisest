@@ -1,6 +1,7 @@
 import {Iteration} from './Iteration';
 import {IterationDTO} from '../../infraestructure/http/dto/IterationDTO';
 import {http} from '../../infraestructure/http/http';
+import {IterationFormData} from '../../../ui/screens/Iteration/CreateIteration/CreateIteration.controller';
 
 export const IterationRepository = {
   getIterations: async (experienceId: number) => {
@@ -15,6 +16,7 @@ export const IterationRepository = {
         notes: iterationDTO.notes,
         score: iterationDTO.score,
         experienceId: iterationDTO.experienceId,
+        image: iterationDTO.image,
         items: iterationDTO.items.map(itemDTO => ({
           text: itemDTO.text,
           state: itemDTO.state,
@@ -25,7 +27,15 @@ export const IterationRepository = {
   // deleteIterations: async (iterations: any) => {
   //   return await http.delete('iterations', iterations);
   // },
-  // postIteration: async (iteration: IterationFormData) => {
-  //   return await http.post('iterations', iteration);
-  // },
+  postIteration: async (iteration: IterationFormData) => {
+    return await http.post('iteration', iteration);
+  },
+
+  putIteration: async (image: string, iterationId: number) => {
+    return await http.put(`iteration/${iterationId}`, {image: image});
+  },
+
+  postImage: async (image: any) => {
+    return await http.postImage(image);
+  },
 };

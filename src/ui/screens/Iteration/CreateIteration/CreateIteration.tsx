@@ -1,31 +1,48 @@
 import {FieldArray, Formik} from 'formik';
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Separator} from '../../../components/Atoms/Separator';
 import {StandardButton} from '../../../components/Objects/StandardButton';
 import {TestButtons} from './components/TestButtons';
 import {AddDeleteButtons} from './components/AddDeleteButtons';
 import {TextAreaItem} from '../../../components/Molecules/TextAreaItem';
 import {TextInputItem} from '../../../components/Molecules/TextInputItem';
-import {SmallButton} from '../../../components/Objects/SmallButton';
-import {scoreColors} from '../../../Styles/globalStyle';
 import {ScorePicker} from './components/ScorePicker';
+import {launchCamera} from 'react-native-image-picker';
+import {IterationFormikData} from './CreateIteration.controller';
+import {red} from '../../../Styles/globalStyle';
 
 interface Props {
   n: number;
+  onSubmit: (values: IterationFormikData) => void;
+  experienceId: number;
+  error: string;
 }
 
-type formikState = 'positive' | 'negative' | 'neutral';
-
-export const CreateIteration = ({n}: Props) => {
+export const CreateIteration = ({n, onSubmit, experienceId, error}: Props) => {
   const [isBeingTested, setIsBeingTested] = useState(false);
+  const [tempUri, setTempUri] = useState('');
+
+  const takePhoto = async (values: any) => {
+    const response = await launchCamera({
+      mediaType: 'photo',
+      quality: 0.8,
+    });
+    if (!response.didCancel && response.assets !== undefined) {
+      setTempUri(response.assets[0].uri!);
+      values.image = response.assets[0];
+    }
+  };
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Iteration {n}:</Text>
       {isBeingTested && (
         <>
           <Separator vertical="small" />
-          <Text style={styles.subtitle}>Steps</Text>
+          <View style={styles.headers}>
+            <Text style={styles.subtitle}>Steps</Text>
+            <Text style={styles.subtitle}>Rate</Text>
+          </View>
         </>
       )}
       <Formik
@@ -38,8 +55,10 @@ export const CreateIteration = ({n}: Props) => {
           ],
           notes: '',
           score: 0,
+          image: {},
+          experienceId,
         }}
-        onSubmit={() => console.log('sup nigga')}>
+        onSubmit={values => onSubmit(values)}>
         {({values, handleSubmit, handleChange, handleBlur}) => (
           <View>
             <FieldArray
@@ -90,13 +109,24 @@ export const CreateIteration = ({n}: Props) => {
                   placeholder="notes"
                 />
                 <Separator />
-                <Text style={styles.subtitle}>Score</Text>
-                <ScorePicker onPress={note => (values.score = note)} />
                 <View style={styles.testButton}>
                   <StandardButton
-                    title="Save"
-                    onPress={() => console.log(JSON.stringify(values, null, 5))}
+                    title="Take a photo"
+                    onPress={() => takePhoto(values)}
                   />
+                </View>
+                {tempUri.length > 0 && (
+                  <Image source={{uri: tempUri}} style={styles.image} />
+                )}
+                <Text style={styles.subtitle}>Score</Text>
+                <ScorePicker onPress={note => (values.score = note)} />
+                {error.length > 0 && (
+                  <View>
+                    <Text style={styles.error}>{error}</Text>
+                  </View>
+                )}
+                <View style={styles.testButton}>
+                  <StandardButton title="Save" onPress={handleSubmit} />
                 </View>
               </View>
             ) : (
@@ -140,5 +170,18 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 20,
     fontWeight: '600',
+  },
+  image: {
+    width: '100%',
+    height: 300,
+  },
+  error: {
+    color: red,
+    fontSize: 20,
+  },
+  headers: {
+    marginRight: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

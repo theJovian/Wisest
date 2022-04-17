@@ -4,6 +4,7 @@ export interface IterationDTO {
   notes: string;
   score: number;
   experienceId: number;
+  image: string;
   items: ItemDTO[];
 }
 

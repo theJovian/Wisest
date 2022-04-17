@@ -28,6 +28,7 @@ export type RootStackParamList = {
   CreateIteration: {
     n: number;
     experience: string;
+    experienceId: number;
   };
   DeleteIteration: {
     iterations: Iteration[];

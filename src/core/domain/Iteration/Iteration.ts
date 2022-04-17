@@ -4,6 +4,7 @@ export interface Iteration {
   notes: string;
   score: number;
   experienceId: number;
+  image: string;
   items: Item[];
 }
 

@@ -19,16 +19,16 @@ const post = async (url: string, body: any) => {
     headers,
     body: JSON.stringify(body),
   });
-  return response.text();
+  return [await response.json(), response.status];
 };
 
-const put = async <T>(url: string, body: any) => {
+const put = async (url: string, body: any) => {
   const response = await fetch(base + url, {
     method: 'PUT',
     headers,
-    body,
+    body: JSON.stringify(body),
   });
-  return (await response.json()) as T;
+  return response.text();
 };
 
 const _delete = async (url: string, body?: any) => {
@@ -40,9 +40,24 @@ const _delete = async (url: string, body?: any) => {
   return response.text();
 };
 
+const postImage = async (body: any) => {
+  const formData = new FormData();
+  formData.append('file', body);
+  formData.append('upload_preset', 'wisest');
+  const response = await fetch(
+    'https://api.cloudinary.com/v1_1/wisest/image/upload',
+    {
+      method: 'POST',
+      body: formData,
+    },
+  );
+  return await response.json();
+};
+
 export const http = {
   get,
   post,
   put,
   delete: _delete,
+  postImage,
 };

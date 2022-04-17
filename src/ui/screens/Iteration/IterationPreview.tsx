@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {Iteration as IterationModel} from '../../../core/domain/Iteration/Iteration';
 import {Item} from './Item';
@@ -48,6 +48,8 @@ export const IterationPreview = ({
       })}
       {isReduced && <Text>...</Text>}
       <View style={{flex: 1}} />
+      <Image source={{uri: iteration.image}} style={styles.image} />
+      <View style={{flex: 1}} />
       <View style={styles.score}>
         <Score score={iteration.score} />
       </View>
@@ -75,5 +77,9 @@ const styles = StyleSheet.create({
   score: {
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  image: {
+    width: '100%',
+    height: 200,
   },
 });
