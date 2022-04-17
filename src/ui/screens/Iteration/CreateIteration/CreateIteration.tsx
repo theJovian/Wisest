@@ -55,7 +55,7 @@ export const CreateIteration = ({n, onSubmit, experienceId, error}: Props) => {
           ],
           notes: '',
           score: 0,
-          image: {},
+          image: undefined,
           experienceId,
         }}
         onSubmit={values => onSubmit(values)}>

@@ -12,8 +12,8 @@ export const UserRepository = {
       email: user.email,
     } as User;
   },
-  postUser: async (email: string, password: string, username: string) => {
-    const [user] = await http.post('users', {email, password, username});
+  postUser: async (email: string, username: string) => {
+    const [user] = await http.post('users', {email, username});
     return {username: user.username, email: user.email, id: user.id} as User;
   },
   registerFirebase: async (email: string, password: string) => {
@@ -21,5 +21,11 @@ export const UserRepository = {
   },
   loginFirebase: async (email: string, password: string) => {
     return await firebase.login(email, password);
+  },
+  deleteUser: async (userId: number) => {
+    return await http.delete(`users/${userId}`);
+  },
+  logoutFirebase: async () => {
+    return await firebase.logout();
   },
 };

@@ -36,6 +36,7 @@ export const ExperiencesController = () => {
           experience,
         })
       }
+      onGoToSettings={() => navigator.navigate('Settings')}
     />
   );
 };

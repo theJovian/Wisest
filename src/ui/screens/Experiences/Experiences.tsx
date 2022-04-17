@@ -13,6 +13,7 @@ interface Props {
   onCreateNewExperience: () => void;
   onDeleteExperience: () => void;
   onSelectExperience: (experience: Experience) => void;
+  onGoToSettings: () => void;
 }
 
 export const Experiences = ({
@@ -20,6 +21,7 @@ export const Experiences = ({
   onCreateNewExperience,
   onDeleteExperience,
   onSelectExperience,
+  onGoToSettings,
 }: Props) => {
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
   return (
@@ -29,11 +31,17 @@ export const Experiences = ({
           ListHeaderComponent={() => (
             <Text style={styles.title}>My Experiences</Text>
           )}
+          ListEmptyComponent={() => (
+            <Text style={styles.subtitle}>
+              You have no experiences yet... Try adding one!
+            </Text>
+          )}
           ListFooterComponent={() => <Separator vertical="big" />}
           showsVerticalScrollIndicator={false}
           data={experiences}
           renderItem={({item}) => (
             <ExperienceItem
+              key={item.id + item.name}
               experience={item}
               onPress={() => {
                 onSelectExperience(item);
@@ -63,10 +71,11 @@ export const Experiences = ({
                 }}
               />
               <SideItem
-                icon="cog-outline"
-                label="Settings"
+                icon="person-circle-outline"
+                label="Account"
                 onPress={() => {
                   setIsSideMenuVisible(false);
+                  onGoToSettings();
                 }}
               />
             </SideMenu>
@@ -102,10 +111,11 @@ const styles = StyleSheet.create({
     color: dark,
   },
   subtitle: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: 'normal',
     letterSpacing: 2,
     textAlign: 'center',
+    color: dark,
   },
   floatingMenu: {
     position: 'absolute',

@@ -82,7 +82,20 @@ const login = (email: string, password: string) => {
     });
 };
 
+const logout = async () => {
+  await auth()
+    .signOut()
+    .then(() => {
+      console.log('logged out');
+    });
+  return {
+    status: 'ok',
+    message: 'user logged out successfully',
+  };
+};
+
 export const firebase = {
   register,
   login,
+  logout,
 };

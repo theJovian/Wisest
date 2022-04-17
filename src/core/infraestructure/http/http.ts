@@ -35,7 +35,7 @@ const _delete = async (url: string, body?: any) => {
   const response = await fetch(base + url, {
     method: 'DELETE',
     headers,
-    body: JSON.stringify(body),
+    body: body ?? JSON.stringify(body),
   });
   return response.text();
 };

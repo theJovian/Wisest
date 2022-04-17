@@ -26,7 +26,7 @@ export interface IterationFormikData {
   }[];
   notes: string;
   score: number;
-  image: Asset;
+  image?: Asset;
   experienceId: number;
 }
 
@@ -64,7 +64,9 @@ export const CreateIterationController = () => {
     };
 
     const [data, status] = await IterationService.createIteration(iteration);
-    if (status === 200) {
+    if (status === 200 && values.image !== undefined) {
+      console.log(JSON.stringify(values.image, null, 5));
+      console.log('sending petition');
       const imageToUpload = {
         uri: values.image.uri,
         type: values.image.type,

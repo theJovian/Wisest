@@ -12,6 +12,8 @@ import {CreateIterationController} from '../screens/Iteration/CreateIteration/Cr
 import {brandColor, dark} from '../Styles/globalStyle';
 import {AccessController} from '../screens/Access/Access.controller';
 import {RegisterController} from '../screens/Access/Register/Register.controller';
+import {SettingsController} from '../screens/Settings/Settings.controller';
+import {SplashScreenController} from '../screens/SplashScreen/SplashScreen.controller';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -34,6 +36,8 @@ export type RootStackParamList = {
   };
   Access: undefined;
   Register: undefined;
+  Settings: undefined;
+  SplashScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -44,6 +48,7 @@ export const MyStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
+      <Stack.Screen name="SplashScreen" component={SplashScreenController} />
       <Stack.Screen name="Access" component={AccessController} />
       <Stack.Screen name="Login" component={LoginController} />
       <Stack.Screen name="Register" component={RegisterController} />
@@ -89,6 +94,21 @@ export const MyStack = () => {
         name="CreateIteration"
         component={CreateIterationController}
         options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: brandColor,
+          },
+          headerTintColor: dark,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={SettingsController}
+        options={{
+          title: 'My Experiences',
           headerShown: true,
           headerStyle: {
             backgroundColor: brandColor,

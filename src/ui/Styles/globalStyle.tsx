@@ -8,8 +8,7 @@ export const globalStyle = StyleSheet.create({
     paddingTop: 30,
   },
 });
-
-export const brandColor = '#FCEC53';
+export const brandColor = '#F9E830';
 export const red = '#E71D36';
 export const green = '#2EC4B6';
 export const light = '#FDFFFC';
