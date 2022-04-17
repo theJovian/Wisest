@@ -40,6 +40,49 @@ const register = (email: string, password: string) => {
     });
 };
 
+const login = (email: string, password: string) => {
+  return auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('Signed in!');
+      return {
+        status: 'ok',
+        message: 'user logged in successfully',
+      } as Response;
+    })
+    .catch(error => {
+      if (error.code === 'auth/user-not-found') {
+        console.log('User does not exist');
+        return {
+          status: 'error',
+          message: 'User does not exist',
+        } as Response;
+      }
+      if (error.code === 'auth/wrong-password') {
+        console.log('Wrong email or password');
+        return {
+          status: 'error',
+          message: 'Wrong email or password',
+        } as Response;
+      }
+
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+        return {
+          status: 'error',
+          message: 'Wrong email or password',
+        } as Response;
+      } else {
+        console.log(error);
+        return {
+          status: 'error',
+          message: 'something went wrong, we apologize',
+        } as Response;
+      }
+    });
+};
+
 export const firebase = {
   register,
+  login,
 };

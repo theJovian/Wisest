@@ -7,13 +7,13 @@ import {SideMenu} from '../../../components/Objects/SideMenu';
 import {SideItem} from '../../../components/Molecules/SideItem';
 import {Separator} from '../../../components/Atoms/Separator';
 import {FloatingButton} from '../../../components/Objects/FloatingButton';
+import {dark} from '../../../Styles/globalStyle';
 
 interface Props {
   experience: ExperienceModel;
   iterations: IterationModel[];
   onPress: (iteration: IterationModel) => void;
   createIteration: (n: number, experience: string) => void;
-  deleteIterations: (iterations: IterationModel[]) => void;
 }
 
 export const Experience = ({
@@ -21,14 +21,11 @@ export const Experience = ({
   iterations,
   onPress,
   createIteration,
-  deleteIterations,
 }: Props) => {
-  const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
-
   return (
     <View style={{flex: 1}}>
       <ScrollView>
-        <Separator />
+        <Separator vertical="small" />
         <Text style={styles.title}>{experience.name}</Text>
         <Text style={styles.description}>{experience.description}</Text>
         <View style={styles.carousel}>
@@ -38,6 +35,7 @@ export const Experience = ({
             data={iterations}
             renderItem={({item}) => (
               <IterationPreview
+                key={item.id}
                 iteration={item}
                 onPress={() => onPress(item)}
                 numberOfItems={5}
@@ -50,31 +48,10 @@ export const Experience = ({
         <Separator vertical="big" />
       </ScrollView>
       <View style={styles.floatingMenu}>
-        {isSideMenuVisible && (
-          <>
-            <SideMenu>
-              <SideItem
-                icon="trash-outline"
-                label="Delete"
-                onPress={() => {
-                  setIsSideMenuVisible(false);
-                  deleteIterations(iterations);
-                }}
-              />
-              <SideItem
-                icon="add-outline"
-                label="New"
-                onPress={() => {
-                  setIsSideMenuVisible(false);
-                  createIteration(iterations.length + 1, experience.name);
-                }}
-              />
-            </SideMenu>
-            <Separator vertical="medium" />
-          </>
-        )}
         <FloatingButton
-          onPress={() => setIsSideMenuVisible(!isSideMenuVisible)}
+          onPress={() =>
+            createIteration(iterations.length + 1, experience.name)
+          }
           icon="brush"
         />
       </View>
@@ -87,6 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: dark,
   },
   description: {
     fontSize: 16,
@@ -105,5 +83,6 @@ const styles = StyleSheet.create({
     bottom: 20,
     right: 20,
     zIndex: 999,
+    alignItems: 'flex-end',
   },
 });

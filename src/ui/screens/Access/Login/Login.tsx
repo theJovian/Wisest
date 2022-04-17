@@ -1,40 +1,80 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {RegisterFormValues} from '../Register/Register.controller';
+import {Separator} from '../../../components/Atoms/Separator';
+import {Formik} from 'formik';
+import {TextInputItem} from '../../../components/Molecules/TextInputItem';
+import {StandardButton} from '../../../components/Objects/StandardButton';
+import {brandColor, dark, red} from '../../../Styles/globalStyle';
+import {LoginFormValues} from './Login.controller';
 
 interface Props {
-  handleLogin: () => void;
-  hasFailedLogin: boolean;
+  onSubmit: (values: LoginFormValues) => void;
+  error: string;
 }
 
-export const Login = ({handleLogin, hasFailedLogin}: Props) => {
+export const Login = ({onSubmit, error}: Props) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleLogin}>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </View>
-      </TouchableOpacity>
-      {hasFailedLogin && <Text>User does not Exist</Text>}
+      <Text style={styles.title}>Login</Text>
+      <Separator />
+      <Formik
+        onSubmit={values => onSubmit(values)}
+        initialValues={{
+          email: '',
+          password: '',
+        }}>
+        {({values, handleSubmit, handleChange, handleBlur}) => (
+          <View style={styles.form}>
+            <TextInputItem
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              value={values.email}
+              placeholder="Email"
+            />
+            <TextInputItem
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              value={values.password}
+              placeholder="Password"
+              isSecret
+            />
+            <Separator vertical="big" />
+            {error.length > 0 && (
+              <>
+                <Text style={styles.error}>{error}</Text>
+                <Separator />
+              </>
+            )}
+            <StandardButton
+              title="Login"
+              onPress={handleSubmit}
+              color={dark}
+              backgroundColor={brandColor}
+            />
+          </View>
+        )}
+      </Formik>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    margin: 30,
   },
-  button: {
-    height: 50,
-    width: 300,
-    backgroundColor: 'yellow',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-  },
-  buttonText: {
-    fontSize: 24,
+  title: {
+    fontSize: 30,
+    color: dark,
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  form: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  error: {
+    color: red,
+    fontSize: 18,
   },
 });

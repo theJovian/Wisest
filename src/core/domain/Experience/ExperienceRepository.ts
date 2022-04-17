@@ -3,8 +3,10 @@ import {Experience, ExperienceFormData} from './Experience';
 import {ExperienceDTO} from '../../infraestructure/http/dto/ExperienceDTO';
 
 export const ExperienceRepository = {
-  getExperiences: async () => {
-    const experiences = await http.get<ExperienceDTO[]>('experiences');
+  getExperiences: async (userId: number) => {
+    const experiences = await http.get<ExperienceDTO[]>(
+      `experiences/${userId}`,
+    );
     return experiences.map(
       (experienceDTO): Experience => ({
         id: experienceDTO.id,

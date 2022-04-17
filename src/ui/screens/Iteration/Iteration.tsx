@@ -19,14 +19,17 @@ export const Iteration = ({iteration}: Props) => {
       <Separator vertical="small" />
       <View style={styles.items}>
         {iteration.items.map(item => {
-          return <Item item={item} size="big" />;
+          return <Item item={item} size="big" color={dark} />;
         })}
       </View>
       <Separator vertical="small" />
       <Text style={styles.subtitle}>Notes</Text>
       <Separator />
       <Text style={styles.notes}>{iteration.notes}</Text>
-      <Image source={{uri: iteration.image}} style={styles.image} />
+      {iteration.image !== null && (
+        <Image source={{uri: iteration.image}} style={styles.image} />
+      )}
+      <Separator vertical="big" />
       <View style={styles.score}>
         <Score score={iteration.score} size="big" />
       </View>
@@ -62,6 +65,7 @@ const styles = StyleSheet.create({
     marginVertical: 50,
   },
   notes: {
+    color: dark,
     fontSize: 18,
     textAlign: 'justify',
   },

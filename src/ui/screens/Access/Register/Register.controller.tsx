@@ -38,7 +38,7 @@ export const RegisterController = () => {
     } else if (values.password !== values.confirmPassword) {
       setError(Errors.PASSWORDS);
     } else {
-      const response = await UserService.registerUser(
+      const response = await UserService.register(
         values.email,
         values.password,
         values.username,
@@ -47,7 +47,7 @@ export const RegisterController = () => {
         setError((response as Response).message);
       } else {
         setUser(response as User);
-        navigator.navigate('Login');
+        navigator.navigate('Experiences');
       }
     }
   };

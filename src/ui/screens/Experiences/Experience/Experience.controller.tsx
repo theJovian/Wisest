@@ -37,19 +37,12 @@ export const ExperienceController = () => {
     });
   };
 
-  const deleteIteration = (iterationsToDelete: Iteration[]) => {
-    navigator.navigate('DeleteIteration', {
-      iterations: iterationsToDelete,
-    });
-  };
-
   return (
     <Experience
       experience={experience}
       iterations={iterations ?? []}
       onPress={onPress}
       createIteration={createIteration}
-      deleteIterations={deleteIteration}
     />
   );
 };

@@ -9,7 +9,6 @@ import {ExperienceController} from '../screens/Experiences/Experience/Experience
 import {Iteration} from '../../core/domain/Iteration/Iteration';
 import {IterationController} from '../screens/Iteration/Iteration.controller';
 import {CreateIterationController} from '../screens/Iteration/CreateIteration/CreateIteration.controller';
-import {DeleteIterationsController} from '../screens/Iteration/DeleteIterations/DeleteIterations.controller';
 import {brandColor, dark} from '../Styles/globalStyle';
 import {AccessController} from '../screens/Access/Access.controller';
 import {RegisterController} from '../screens/Access/Register/Register.controller';
@@ -32,9 +31,6 @@ export type RootStackParamList = {
     n: number;
     experience: string;
     experienceId: number;
-  };
-  DeleteIteration: {
-    iterations: Iteration[];
   };
   Access: undefined;
   Register: undefined;
@@ -60,7 +56,21 @@ export const MyStack = () => {
         component={DeleteExperiencesController}
       />
       <Stack.Screen name="Experiences" component={ExperiencesController} />
-      <Stack.Screen name="Experience" component={ExperienceController} />
+      <Stack.Screen
+        name="Experience"
+        component={ExperienceController}
+        options={{
+          title: 'My Experiences',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: brandColor,
+          },
+          headerTintColor: dark,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
       <Stack.Screen
         name="Iteration"
         component={IterationController}
@@ -88,10 +98,6 @@ export const MyStack = () => {
             fontWeight: 'bold',
           },
         }}
-      />
-      <Stack.Screen
-        name="DeleteIteration"
-        component={DeleteIterationsController}
       />
     </Stack.Navigator>
   );

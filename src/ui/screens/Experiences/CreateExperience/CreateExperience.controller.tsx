@@ -10,6 +10,7 @@ export const CreateExperienceController = () => {
   const {mutate} = useMutation(ExperienceService.createExperience, {
     onSuccess: () => {
       queryClient.invalidateQueries('experiences');
+      console.log('here?');
     },
     onSettled: () => {
       navigator.goBack();

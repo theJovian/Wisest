@@ -4,24 +4,38 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {UserService} from '../../../../core/application/UserService';
 import {RootStackParamList} from '../../../navigation/Navigator';
+import {Response} from '../../../../core/infraestructure/Firebase/Firebase';
+import {User} from '../../../../core/domain/User/User';
 import {UserContext} from '../../../Context/UserContext';
 
 type LoginScreenProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
-export const LoginController = () => {
-  const [hasFailedLogin, setHasFailedLogin] = useState(false);
-  const navigator = useNavigation<LoginScreenProp>();
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}
 
-  const handleLogin = async () => {
-    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&');
-    const user = await UserService.getUser('asd');
-    if (user) {
-      console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
-      // console.log(JSON.stringify(user, null, 5));
-      navigator.navigate('Experiences');
+enum Errors {
+  EMPTY_FIELDS = 'You must fill email and password',
+}
+
+export const LoginController = () => {
+  const navigator = useNavigation<LoginScreenProp>();
+  const [error, setError] = useState('');
+  const {setUser} = useContext(UserContext);
+
+  const handleLogin = async (values: LoginFormValues) => {
+    if (values.email.length === 0 || values.password.length === 0) {
+      setError(Errors.EMPTY_FIELDS);
     } else {
-      setHasFailedLogin(true);
+      const response = await UserService.login(values.email, values.password);
+      if ((response as Response).status !== undefined) {
+        setError((response as Response).message);
+      } else {
+        setUser(response as User);
+        navigator.navigate('Experiences');
+      }
     }
   };
-  return <Login handleLogin={handleLogin} hasFailedLogin={hasFailedLogin} />;
+  return <Login onSubmit={handleLogin} error={error} />;
 };

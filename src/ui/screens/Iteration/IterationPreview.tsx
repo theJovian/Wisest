@@ -4,6 +4,7 @@ import {Iteration as IterationModel} from '../../../core/domain/Iteration/Iterat
 import {Item} from './Item';
 import {Separator} from '../../components/Atoms/Separator';
 import {Score} from './Score';
+import {light, orange} from '../../Styles/globalStyle';
 
 interface Props {
   iteration: IterationModel;
@@ -43,8 +44,8 @@ export const IterationPreview = ({
       <Separator vertical="small" />
       <Text style={styles.subtitle}>Steps</Text>
       <Separator vertical="small" />
-      {items.map(item => {
-        return <Item item={item} size="small" />;
+      {items.map((item, index) => {
+        return <Item key={item.text + index} item={item} size="small" />;
       })}
       {isReduced && <Text>...</Text>}
       <View style={{flex: 1}} />

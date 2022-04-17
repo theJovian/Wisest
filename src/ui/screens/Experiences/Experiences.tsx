@@ -6,6 +6,7 @@ import {SideMenu} from '../../components/Objects/SideMenu';
 import {FloatingButton} from '../../components/Objects/FloatingButton';
 import {Separator} from '../../components/Atoms/Separator';
 import {SideItem} from '../../components/Molecules/SideItem';
+import {dark} from '../../Styles/globalStyle';
 
 interface Props {
   experiences: Experience[];
@@ -54,18 +55,18 @@ export const Experiences = ({
                 }}
               />
               <SideItem
-                icon="create-outline"
-                label="Edit"
-                onPress={() => {
-                  setIsSideMenuVisible(false);
-                }}
-              />
-              <SideItem
                 icon="add-outline"
                 label="New"
                 onPress={() => {
                   setIsSideMenuVisible(false);
                   onCreateNewExperience();
+                }}
+              />
+              <SideItem
+                icon="cog-outline"
+                label="Settings"
+                onPress={() => {
+                  setIsSideMenuVisible(false);
                 }}
               />
             </SideMenu>
@@ -83,7 +84,6 @@ export const Experiences = ({
 
 const styles = StyleSheet.create({
   container: {
-    // marginTop: 20,
     flex: 1,
     alignItems: 'center',
   },
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 2,
     textAlign: 'center',
+    color: dark,
   },
   subtitle: {
     fontSize: 30,

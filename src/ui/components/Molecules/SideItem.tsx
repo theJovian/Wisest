@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 12,
     backgroundColor: 'white',
-    width: 140,
+    width: 155,
     height: 50,
     borderRadius: 30,
     justifyContent: 'flex-start',

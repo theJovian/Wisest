@@ -22,7 +22,7 @@ export const Score = ({score, size}: Props) => {
         showsText
         formatText={() => `${score.toString()}/10`}
         textStyle={{
-          fontSize: size === 'big' ? 18 : 15,
+          fontSize: size === 'big' ? 17 : 15,
           color: dark,
           fontWeight: size === 'big' ? '600' : 'normal',
         }}

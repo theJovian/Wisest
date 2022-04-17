@@ -10,12 +10,18 @@ import {green, red} from '../../Styles/globalStyle';
 interface Props {
   item: ItemModel;
   size: 'small' | 'big';
+  color?: string;
 }
 
-export const Item = ({item, size}: Props) => {
+export const Item = ({item, size, color}: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={{...styles.text, fontSize: size === 'big' ? 18 : 15}}>
+      <Text
+        style={{
+          ...styles.text,
+          fontSize: size === 'big' ? 18 : 15,
+          color: color ? color : 'grey',
+        }}>
         - {item.text}
       </Text>
       <Icon

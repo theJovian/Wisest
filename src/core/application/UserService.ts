@@ -7,12 +7,20 @@ export const UserService = {
   addUser: async (email: string, password: string, username: string) => {
     return await UserRepository.postUser(email, password, username);
   },
-  registerUser: async (email: string, password: string, username: string) => {
-    const response = await UserRepository.register(email, password);
+  register: async (email: string, password: string, username: string) => {
+    const response = await UserRepository.registerFirebase(email, password);
     if (response.status === 'error') {
       return response;
     } else {
       return await UserRepository.postUser(email, password, username);
+    }
+  },
+  login: async (email: string, password: string) => {
+    const response = await UserRepository.loginFirebase(email, password);
+    if (response.status === 'error') {
+      return response;
+    } else {
+      return await UserRepository.getUser(email);
     }
   },
 };

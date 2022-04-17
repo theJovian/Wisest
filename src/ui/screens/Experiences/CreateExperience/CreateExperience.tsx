@@ -1,17 +1,18 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {Formik} from 'formik';
 import {StandardButton} from '../../../components/Objects/StandardButton';
 import {TextForm} from '../../../components/Objects/TextForm';
 import {Separator} from '../../../components/Atoms/Separator';
-
-const height = Dimensions.get('window').height;
+import {UserContext} from '../../../Context/UserContext';
 
 interface props {
   onCreate: any;
 }
 
 export const CreateExperience = ({onCreate}: props) => {
+  const {user} = useContext(UserContext);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>New Experience</Text>
@@ -21,7 +22,7 @@ export const CreateExperience = ({onCreate}: props) => {
           const experience = {
             name: values.name,
             description: values.description,
-            user_id: 1,
+            user_id: user?.id,
           };
           onCreate(experience);
         }}>

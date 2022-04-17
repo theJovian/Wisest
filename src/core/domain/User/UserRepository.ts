@@ -10,13 +10,16 @@ export const UserRepository = {
       id: user.id,
       username: user.username,
       email: user.email,
-    };
-  },
-  register: async (email: string, password: string) => {
-    return await firebase.register(email, password);
+    } as User;
   },
   postUser: async (email: string, password: string, username: string) => {
     const [user] = await http.post('users', {email, password, username});
     return {username: user.username, email: user.email, id: user.id} as User;
+  },
+  registerFirebase: async (email: string, password: string) => {
+    return await firebase.register(email, password);
+  },
+  loginFirebase: async (email: string, password: string) => {
+    return await firebase.login(email, password);
   },
 };
