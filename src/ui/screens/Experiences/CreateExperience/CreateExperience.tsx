@@ -43,6 +43,7 @@ export const CreateExperience = ({onCreate}: props) => {
               type="textArea"
             />
             <Separator />
+            <View style={{flex: 1}} />
             <View style={styles.button}>
               <StandardButton onPress={handleSubmit} title="Create" />
             </View>
@@ -62,8 +63,9 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   button: {
-    bottom: -height + 500,
+    marginVertical: 50,
   },
 });

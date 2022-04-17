@@ -13,6 +13,7 @@ import {Separator} from '../../../components/Atoms/Separator';
 import CheckBox from '@react-native-community/checkbox';
 import {Formik} from 'formik';
 import {FormikValues, trashItem} from './DeleteExperiences.controller';
+import {red} from '../../../Styles/globalStyle';
 
 interface Props {
   experiences: Experience[];
@@ -118,7 +119,8 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 10,
-    paddingTop: 50,
+    paddingTop: 30,
+    paddingBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -133,6 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   deleteButton: {
-    color: 'red',
+    color: red,
+    fontSize: 18,
   },
 });

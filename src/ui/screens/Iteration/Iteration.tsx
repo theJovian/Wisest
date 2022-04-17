@@ -1,9 +1,10 @@
 import React from 'react';
 import {Iteration as IterationModel} from '../../../core/domain/Iteration/Iteration';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Separator} from '../../components/Atoms/Separator';
 import {Item} from './Item';
 import {Score} from './Score';
+import {dark} from '../../Styles/globalStyle';
 
 interface Props {
   iteration: IterationModel;
@@ -18,15 +19,16 @@ export const Iteration = ({iteration}: Props) => {
       <Separator vertical="small" />
       <View style={styles.items}>
         {iteration.items.map(item => {
-          return <Item item={item} />;
+          return <Item item={item} size="big" />;
         })}
       </View>
       <Separator vertical="small" />
       <Text style={styles.subtitle}>Notes</Text>
-      <Text>{iteration.notes}</Text>
-      <View style={{flex: 1}} />
+      <Separator />
+      <Text style={styles.notes}>{iteration.notes}</Text>
+      <Image source={{uri: iteration.image}} style={styles.image} />
       <View style={styles.score}>
-        <Score score={iteration.score} />
+        <Score score={iteration.score} size="big" />
       </View>
     </ScrollView>
   );
@@ -38,12 +40,14 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: 'bold',
+    color: dark,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: '600',
+    color: dark,
   },
   items: {
     paddingHorizontal: 10,
@@ -51,5 +55,14 @@ const styles = StyleSheet.create({
   score: {
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  image: {
+    width: '100%',
+    height: 300,
+    marginVertical: 50,
+  },
+  notes: {
+    fontSize: 18,
+    textAlign: 'justify',
   },
 });

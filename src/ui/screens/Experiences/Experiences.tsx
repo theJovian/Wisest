@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    paddingTop: 50,
+    paddingTop: 30,
+    paddingBottom: 20,
     fontSize: 40,
     fontWeight: 'bold',
     letterSpacing: 2,

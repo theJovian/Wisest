@@ -1,8 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {UserService} from '../../../core/application/UserService';
+import React from 'react';
 
 interface Props {
   handleLogin: () => void;

@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Experience as ExperienceModel} from '../../../../core/domain/Experience/Experience';
 import {IterationPreview} from '../../Iteration/IterationPreview';
@@ -26,22 +26,29 @@ export const Experience = ({
   const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
 
   return (
-    <View>
-      <Text style={styles.title}>{experience.name}</Text>
-      <View style={styles.carousel}>
-        <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={iterations}
-          renderItem={({item}) => (
-            <IterationPreview
-              iteration={item}
-              onPress={() => onPress(item)}
-              numberOfItems={5}
-            />
-          )}
-        />
-      </View>
+    <View style={{flex: 1}}>
+      <ScrollView>
+        <Separator />
+        <Text style={styles.title}>{experience.name}</Text>
+        <Text style={styles.description}>{experience.description}</Text>
+        <View style={styles.carousel}>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={iterations}
+            renderItem={({item}) => (
+              <IterationPreview
+                iteration={item}
+                onPress={() => onPress(item)}
+                numberOfItems={5}
+              />
+            )}
+          />
+        </View>
+        <Separator vertical="big" />
+        <Separator vertical="big" />
+        <Separator vertical="big" />
+      </ScrollView>
       <View style={styles.floatingMenu}>
         {isSideMenuVisible && (
           <>
@@ -68,7 +75,7 @@ export const Experience = ({
         )}
         <FloatingButton
           onPress={() => setIsSideMenuVisible(!isSideMenuVisible)}
-          icon="rocket-outline"
+          icon="brush"
         />
       </View>
     </View>
@@ -81,17 +88,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  description: {
+    fontSize: 16,
+    textAlign: 'justify',
+    marginHorizontal: 20,
+    marginVertical: 10,
+  },
   carousel: {
     justifyContent: 'center',
     alignItems: 'center',
     height: '85%',
-    marginTop: 50,
+    marginTop: 20,
   },
   floatingMenu: {
-    // backgroundColor: 'blue',
     position: 'absolute',
-    bottom: 50,
+    bottom: 20,
     right: 20,
-    alignItems: 'flex-end',
+    zIndex: 999,
   },
 });

@@ -44,14 +44,14 @@ export const IterationPreview = ({
       <Text style={styles.subtitle}>Steps</Text>
       <Separator vertical="small" />
       {items.map(item => {
-        return <Item item={item} />;
+        return <Item item={item} size="small" />;
       })}
       {isReduced && <Text>...</Text>}
       <View style={{flex: 1}} />
       <Image source={{uri: iteration.image}} style={styles.image} />
       <View style={{flex: 1}} />
       <View style={styles.score}>
-        <Score score={iteration.score} />
+        <Score score={iteration.score} size="small" />
       </View>
     </TouchableOpacity>
   );

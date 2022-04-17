@@ -10,6 +10,7 @@ import {Iteration} from '../../core/domain/Iteration/Iteration';
 import {IterationController} from '../screens/Iteration/Iteration.controller';
 import {CreateIterationController} from '../screens/Iteration/CreateIteration/CreateIteration.controller';
 import {DeleteIterationsController} from '../screens/Iteration/DeleteIterations/DeleteIterations.controller';
+import {brandColor, dark} from '../Styles/globalStyle';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -60,9 +61,9 @@ export const MyStack = () => {
         options={{
           headerShown: true,
           headerStyle: {
-            backgroundColor: '#f4511e',
+            backgroundColor: brandColor,
           },
-          headerTintColor: '#fff',
+          headerTintColor: dark,
           headerTitleStyle: {
             fontWeight: 'bold',
           },
@@ -74,9 +75,9 @@ export const MyStack = () => {
         options={{
           headerShown: true,
           headerStyle: {
-            backgroundColor: '#f4511e',
+            backgroundColor: brandColor,
           },
-          headerTintColor: '#fff',
+          headerTintColor: dark,
           headerTitleStyle: {
             fontWeight: 'bold',
           },

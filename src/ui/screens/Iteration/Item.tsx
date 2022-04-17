@@ -5,16 +5,24 @@ import {
 } from '../../../core/domain/Iteration/Iteration';
 import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {green, red} from '../../Styles/globalStyle';
 
 interface Props {
   item: ItemModel;
+  size: 'small' | 'big';
 }
 
-export const Item = ({item}: Props) => {
+export const Item = ({item, size}: Props) => {
   return (
     <View style={styles.container}>
-      <Text>- {item.text}</Text>
-      <Icon name={getIcon(item.state)} size={20} />
+      <Text style={{...styles.text, fontSize: size === 'big' ? 18 : 15}}>
+        - {item.text}
+      </Text>
+      <Icon
+        name={getIcon(item.state)}
+        size={size === 'big' ? 30 : 20}
+        color={item.state === 'positive' ? green : red}
+      />
     </View>
   );
 };
@@ -27,5 +35,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 4,
+  },
+  text: {
+    fontSize: 18,
   },
 });

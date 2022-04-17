@@ -1,18 +1,26 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {dark, light} from '../../Styles/globalStyle';
 
 interface Props {
   title: string;
   onPress: () => void;
+  backgroundColor?: string;
+  color?: string;
 }
 
-export const StandardButton = ({title, onPress}: Props) => {
+export const StandardButton = ({
+  title,
+  onPress,
+  backgroundColor = dark,
+  color = light,
+}: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.button}
+      style={{...styles.button, backgroundColor}}
       activeOpacity={0.8}>
-      <Text style={styles.title}>{title.toUpperCase()}</Text>
+      <Text style={{...styles.title, color}}>{title.toUpperCase()}</Text>
     </TouchableOpacity>
   );
 };
