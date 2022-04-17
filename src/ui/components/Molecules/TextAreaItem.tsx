@@ -36,5 +36,6 @@ export const TextAreaItem = ({
 const styles = StyleSheet.create({
   input: {
     width: 425,
+    fontSize: 18,
   },
 });

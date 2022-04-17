@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   error: {
     color: red,
-    fontSize: 20,
+    fontSize: 18,
   },
   headers: {
     marginRight: 10,

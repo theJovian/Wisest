@@ -1,6 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {LoginController} from '../screens/Login/Login.controller';
+import {LoginController} from '../screens/Access/Login/Login.controller';
 import {ExperiencesController} from '../screens/Experiences/Experiences.controller';
 import {CreateExperienceController} from '../screens/Experiences/CreateExperience/CreateExperience.controller';
 import {DeleteExperiencesController} from '../screens/Experiences/DeleteExperiences/DeleteExperiences.controller';
@@ -11,6 +11,8 @@ import {IterationController} from '../screens/Iteration/Iteration.controller';
 import {CreateIterationController} from '../screens/Iteration/CreateIteration/CreateIteration.controller';
 import {DeleteIterationsController} from '../screens/Iteration/DeleteIterations/DeleteIterations.controller';
 import {brandColor, dark} from '../Styles/globalStyle';
+import {AccessController} from '../screens/Access/Access.controller';
+import {RegisterController} from '../screens/Access/Register/Register.controller';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -34,6 +36,8 @@ export type RootStackParamList = {
   DeleteIteration: {
     iterations: Iteration[];
   };
+  Access: undefined;
+  Register: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -44,7 +48,9 @@ export const MyStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
+      <Stack.Screen name="Access" component={AccessController} />
       <Stack.Screen name="Login" component={LoginController} />
+      <Stack.Screen name="Register" component={RegisterController} />
       <Stack.Screen
         name="CreateExperience"
         component={CreateExperienceController}

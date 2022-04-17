@@ -11,6 +11,7 @@ interface Props {
   onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   value: string;
   placeholder: string;
+  isSecret?: boolean;
 }
 
 export const TextInputItem = ({
@@ -18,6 +19,7 @@ export const TextInputItem = ({
   onBlur,
   value,
   placeholder,
+  isSecret,
 }: Props) => {
   return (
     <TextInput
@@ -28,6 +30,7 @@ export const TextInputItem = ({
       underlineColorAndroid="grey"
       placeholder={placeholder}
       maxLength={50}
+      secureTextEntry={isSecret}
     />
   );
 };
@@ -35,5 +38,6 @@ export const TextInputItem = ({
 const styles = StyleSheet.create({
   input: {
     width: 425,
+    fontSize: 18,
   },
 });
