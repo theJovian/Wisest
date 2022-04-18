@@ -83,19 +83,49 @@ const login = (email: string, password: string) => {
 };
 
 const logout = async () => {
-  await auth()
+  return await auth()
     .signOut()
     .then(() => {
       console.log('logged out');
+      return {
+        status: 'ok',
+        message: 'user logged out successfully',
+      } as Response;
+    })
+    .catch(() => {
+      return {
+        status: 'error',
+        message: 'something went wrong, we apologize',
+      } as Response;
     });
-  return {
-    status: 'ok',
-    message: 'user logged out successfully',
-  };
+};
+
+const _delete = async () => {
+  return await auth()
+    .currentUser?.delete()
+    .then(() => {
+      return {
+        status: 'ok',
+        message: 'user deleted successfully',
+      } as Response;
+    })
+    .catch(() => {
+      return {
+        status: 'error',
+        message: 'something went wrong, we apologize',
+      } as Response;
+    });
+};
+
+const reauthenticate = async (email: string, password: string) => {
+  const credential = auth.EmailAuthProvider.credential(email, password);
+  await auth().currentUser?.reauthenticateWithCredential(credential);
 };
 
 export const firebase = {
   register,
   login,
   logout,
+  delete: _delete,
+  reauthenticate,
 };

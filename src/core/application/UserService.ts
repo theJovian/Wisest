@@ -4,8 +4,12 @@ export const UserService = {
   getUser: (email: string) => {
     return UserRepository.getUser(email);
   },
-  deleteUser: async (userId: number) => {
-    return await UserRepository.deleteUser(userId);
+  deleteUser: async (userId: number, email: string, password: string) => {
+    await UserRepository.reauthenticateFirebase(email, password);
+    const response = await UserRepository.deleteUserFirebase();
+    if (response!.status === 'ok') {
+      return await UserRepository.deleteUser(userId);
+    }
   },
   addUser: async (email: string, password: string, username: string) => {
     return await UserRepository.postUser(email, username);

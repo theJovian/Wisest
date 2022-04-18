@@ -28,4 +28,10 @@ export const UserRepository = {
   logoutFirebase: async () => {
     return await firebase.logout();
   },
+  deleteUserFirebase: async () => {
+    return await firebase.delete();
+  },
+  reauthenticateFirebase: async (email: string, password: string) => {
+    await firebase.reauthenticate(email, password);
+  },
 };
