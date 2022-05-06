@@ -81,7 +81,7 @@ export const DeleteExperiences = ({
             data={experiences}
             renderItem={({item, index}) => (
               <View style={styles.element}>
-                <ExperienceItem experience={item} width={350} disabled />
+                <ExperienceItem experience={item} width="82%" disabled />
                 <Separator />
                 <CheckBox
                   value={values.state.trash[index].value}

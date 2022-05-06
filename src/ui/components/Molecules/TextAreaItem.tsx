@@ -1,10 +1,13 @@
 import {
+  Dimensions,
   NativeSyntheticEvent,
   StyleSheet,
   TextInput,
   TextInputFocusEventData,
 } from 'react-native';
 import React, {ChangeEvent} from 'react';
+
+const width = Dimensions.get('window').width;
 
 interface Props {
   onChangeText: (e: string | ChangeEvent<any>) => void;
@@ -35,7 +38,7 @@ export const TextAreaItem = ({
 
 const styles = StyleSheet.create({
   input: {
-    width: 425,
+    width: width - 50,
     fontSize: 18,
   },
 });

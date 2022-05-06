@@ -5,7 +5,7 @@ import {Experience} from '../../../core/domain/Experience/Experience';
 
 interface Props {
   experience: Experience;
-  width?: number;
+  width?: number | string;
   disabled?: boolean;
   onPress?: () => void;
 }

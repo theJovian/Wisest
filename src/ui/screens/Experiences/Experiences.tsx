@@ -41,6 +41,7 @@ export const Experiences = ({
           data={experiences}
           renderItem={({item}) => (
             <ExperienceItem
+              width="100%"
               key={item.id + item.name}
               experience={item}
               onPress={() => {
