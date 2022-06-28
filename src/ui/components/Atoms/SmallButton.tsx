@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {brandColor} from '../../Styles/globalStyle';
-import {Separator} from '../Atoms/Separator';
+import {Separator} from '../Objects/Separator';
 
 interface Props {
   onPress: () => void;

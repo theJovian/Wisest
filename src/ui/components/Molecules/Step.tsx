@@ -13,7 +13,7 @@ interface Props {
   color?: string;
 }
 
-export const Item = ({item, size, color}: Props) => {
+export const Step = ({item, size, color}: Props) => {
   return (
     <View style={styles.container}>
       <Text

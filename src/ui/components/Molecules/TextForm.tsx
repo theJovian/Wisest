@@ -7,8 +7,8 @@ import {
   TextInputFocusEventData,
   View,
 } from 'react-native';
-import {TextInputItem} from '../Molecules/TextInputItem';
-import {TextAreaItem} from '../Molecules/TextAreaItem';
+import {TextInputItem} from '../Atoms/TextInputItem';
+import {TextAreaItem} from '../Atoms/TextAreaItem';
 
 type type = 'textArea' | 'textInput';
 

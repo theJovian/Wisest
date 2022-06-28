@@ -1,10 +1,10 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
-import {Iteration as IterationModel} from '../../../core/domain/Iteration/Iteration';
-import {Item} from './Item';
-import {Separator} from '../../components/Atoms/Separator';
-import {Score} from './Score';
-import {light, orange} from '../../Styles/globalStyle';
+import {Iteration as IterationModel} from '../../../../../core/domain/Iteration/Iteration';
+import {Step} from '../../../../components/Molecules/Step';
+import {Separator} from '../../../../components/Objects/Separator';
+import {Score} from '../../../../components/Atoms/Score';
+import {light, orange} from '../../../../Styles/globalStyle';
 
 interface Props {
   iteration: IterationModel;
@@ -45,7 +45,7 @@ export const IterationPreview = ({
       <Text style={styles.subtitle}>Steps</Text>
       <Separator vertical="small" />
       {items.map((item, index) => {
-        return <Item key={item.text + index} item={item} size="small" />;
+        return <Step key={item.text + index} item={item} size="small" />;
       })}
       {isReduced && <Text>...</Text>}
       <View style={{flex: 1}} />

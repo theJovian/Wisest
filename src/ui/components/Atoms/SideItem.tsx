@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Separator} from '../Atoms/Separator';
+import {Separator} from '../Objects/Separator';
 
 interface Props {
   icon: string;

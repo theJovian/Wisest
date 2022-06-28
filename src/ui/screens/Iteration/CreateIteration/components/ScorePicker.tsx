@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SmallButton} from '../../../../components/Objects/SmallButton';
+import {SmallButton} from '../../../../components/Atoms/SmallButton';
 import {scoreColors} from '../../../../Styles/globalStyle';
 import {StyleSheet, View} from 'react-native';
 

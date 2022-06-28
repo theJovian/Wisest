@@ -1,12 +1,12 @@
 import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Experience as ExperienceModel} from '../../../../core/domain/Experience/Experience';
-import {IterationPreview} from '../../Iteration/IterationPreview';
+import {IterationPreview} from './components/IterationPreview';
 import {Iteration as IterationModel} from '../../../../core/domain/Iteration/Iteration';
-import {SideMenu} from '../../../components/Objects/SideMenu';
-import {SideItem} from '../../../components/Molecules/SideItem';
-import {Separator} from '../../../components/Atoms/Separator';
-import {FloatingButton} from '../../../components/Objects/FloatingButton';
+import {SideMenu} from '../../../components/Molecules/SideMenu';
+import {SideItem} from '../../../components/Atoms/SideItem';
+import {Separator} from '../../../components/Objects/Separator';
+import {FloatingButton} from '../../../components/Atoms/FloatingButton';
 import {dark} from '../../../Styles/globalStyle';
 
 interface Props {

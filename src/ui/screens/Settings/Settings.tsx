@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {dark, red} from '../../Styles/globalStyle';
 import {UserContext} from '../../Context/UserContext';
-import {Separator} from '../../components/Atoms/Separator';
-import {StandardButton} from '../../components/Objects/StandardButton';
+import {Separator} from '../../components/Objects/Separator';
+import {StandardButton} from '../../components/Atoms/StandardButton';
 
 interface Props {
   onLogout: () => void;

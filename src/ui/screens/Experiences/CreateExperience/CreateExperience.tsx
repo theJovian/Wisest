@@ -1,9 +1,9 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React, {useContext} from 'react';
 import {Formik} from 'formik';
-import {StandardButton} from '../../../components/Objects/StandardButton';
-import {TextForm} from '../../../components/Objects/TextForm';
-import {Separator} from '../../../components/Atoms/Separator';
+import {StandardButton} from '../../../components/Atoms/StandardButton';
+import {TextForm} from '../../../components/Molecules/TextForm';
+import {Separator} from '../../../components/Objects/Separator';
 import {UserContext} from '../../../Context/UserContext';
 
 interface props {

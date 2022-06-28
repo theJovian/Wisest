@@ -1,11 +1,11 @@
-import {ExperienceItem} from './ExperienceItem';
+import {ExperienceItem} from '../../components/Molecules/ExperienceItem';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Experience} from '../../../core/domain/Experience/Experience';
-import {SideMenu} from '../../components/Objects/SideMenu';
-import {FloatingButton} from '../../components/Objects/FloatingButton';
-import {Separator} from '../../components/Atoms/Separator';
-import {SideItem} from '../../components/Molecules/SideItem';
+import {SideMenu} from '../../components/Molecules/SideMenu';
+import {FloatingButton} from '../../components/Atoms/FloatingButton';
+import {Separator} from '../../components/Objects/Separator';
+import {SideItem} from '../../components/Atoms/SideItem';
 import {dark} from '../../Styles/globalStyle';
 
 interface Props {

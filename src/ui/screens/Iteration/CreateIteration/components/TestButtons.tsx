@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SmallButton} from '../../../../components/Objects/SmallButton';
-import {Separator} from '../../../../components/Atoms/Separator';
+import {SmallButton} from '../../../../components/Atoms/SmallButton';
+import {Separator} from '../../../../components/Objects/Separator';
 import {green, red} from '../../../../Styles/globalStyle';
 
 interface Props {

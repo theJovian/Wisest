@@ -1,4 +1,4 @@
-import {ExperienceItem} from '../ExperienceItem';
+import {ExperienceItem} from '../../../components/Molecules/ExperienceItem';
 import {
   Dimensions,
   FlatList,
@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useReducer} from 'react';
 import {Experience} from '../../../../core/domain/Experience/Experience';
-import {Separator} from '../../../components/Atoms/Separator';
+import {Separator} from '../../../components/Objects/Separator';
 import CheckBox from '@react-native-community/checkbox';
 import {Formik} from 'formik';
 import {FormikValues, trashItem} from './DeleteExperiences.controller';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import {StandardButton} from '../../components/Objects/StandardButton';
-import {Separator} from '../../components/Atoms/Separator';
+import {StandardButton} from '../../components/Atoms/StandardButton';
+import {Separator} from '../../components/Objects/Separator';
 import {dark, light} from '../../Styles/globalStyle';
 
 interface Props {

@@ -1,12 +1,12 @@
 import {FieldArray, Formik} from 'formik';
 import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Separator} from '../../../components/Atoms/Separator';
-import {StandardButton} from '../../../components/Objects/StandardButton';
+import {Separator} from '../../../components/Objects/Separator';
+import {StandardButton} from '../../../components/Atoms/StandardButton';
 import {TestButtons} from './components/TestButtons';
 import {AddDeleteButtons} from './components/AddDeleteButtons';
-import {TextAreaItem} from '../../../components/Molecules/TextAreaItem';
-import {TextInputItem} from '../../../components/Molecules/TextInputItem';
+import {TextAreaItem} from '../../../components/Atoms/TextAreaItem';
+import {TextInputItem} from '../../../components/Atoms/TextInputItem';
 import {ScorePicker} from './components/ScorePicker';
 import {launchCamera} from 'react-native-image-picker';
 import {IterationFormikData} from './CreateIteration.controller';

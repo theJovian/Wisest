@@ -1,6 +1,6 @@
 import React from 'react';
-import {SmallButton} from '../../../../components/Objects/SmallButton';
-import {Separator} from '../../../../components/Atoms/Separator';
+import {SmallButton} from '../../../../components/Atoms/SmallButton';
+import {Separator} from '../../../../components/Objects/Separator';
 import {StyleSheet, View} from 'react-native';
 import {dark, light} from '../../../../Styles/globalStyle';
 

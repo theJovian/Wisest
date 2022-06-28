@@ -1,10 +1,10 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {RegisterFormValues} from '../Register/Register.controller';
-import {Separator} from '../../../components/Atoms/Separator';
+import {Separator} from '../../../components/Objects/Separator';
 import {Formik} from 'formik';
-import {TextInputItem} from '../../../components/Molecules/TextInputItem';
-import {StandardButton} from '../../../components/Objects/StandardButton';
+import {TextInputItem} from '../../../components/Atoms/TextInputItem';
+import {StandardButton} from '../../../components/Atoms/StandardButton';
 import {brandColor, dark, red} from '../../../Styles/globalStyle';
 import {LoginFormValues} from './Login.controller';
 

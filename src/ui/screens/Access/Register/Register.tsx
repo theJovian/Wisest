@@ -2,9 +2,9 @@ import {Formik} from 'formik';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {brandColor, dark, red} from '../../../Styles/globalStyle';
-import {TextInputItem} from '../../../components/Molecules/TextInputItem';
-import {StandardButton} from '../../../components/Objects/StandardButton';
-import {Separator} from '../../../components/Atoms/Separator';
+import {TextInputItem} from '../../../components/Atoms/TextInputItem';
+import {StandardButton} from '../../../components/Atoms/StandardButton';
+import {Separator} from '../../../components/Objects/Separator';
 import {RegisterFormValues} from './Register.controller';
 
 interface Props {

@@ -1,15 +1,15 @@
 import React from 'react';
 import {Iteration as IterationModel} from '../../../core/domain/Iteration/Iteration';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Separator} from '../../components/Atoms/Separator';
-import {Item} from './Item';
-import {Score} from './Score';
+import {Separator} from '../../components/Objects/Separator';
+import {Step} from '../../components/Molecules/Step';
+import {Score} from '../../components/Atoms/Score';
 import {dark} from '../../Styles/globalStyle';
 
 interface Props {
   iteration: IterationModel;
 }
-
+//TODO use a stack
 export const Iteration = ({iteration}: Props) => {
   return (
     <ScrollView style={styles.container}>
@@ -19,7 +19,7 @@ export const Iteration = ({iteration}: Props) => {
       <Separator vertical="small" />
       <View style={styles.items}>
         {iteration.items.map(item => {
-          return <Item item={item} size="big" color={dark} />;
+          return <Step item={item} size="big" color={dark} />;
         })}
       </View>
       <Separator vertical="small" />
